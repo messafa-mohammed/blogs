@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%-include(`./partials/head`) %>
+    <%-include(`../partials/head`) %>
 <body>
-    <%-include(`./partials/nav`) %>
+    <%-include(`../partials/nav`) %>
         <div class="details content">
             <h2> <%= blog.title%> </h2>   
                 <div class="content">
                     <p> <%= blog.title%> </p>
                 </div>
-                <a class="delete" data-doc="<%= blog._id%>">delete</a>
+                <a class="delete" data-doc="<%= blog._id%>">
+                    <img src="/trush.svg" alt="delete icon">
+                </a>
 
         </div>
-    <%-include(`./partials/footer`) %>
+    <%-include(`../partials/footer`) %>
 
     <script>
         const deleteBtn = document.querySelector('a.delete');
