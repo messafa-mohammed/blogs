@@ -14,18 +14,18 @@
     <%-include(`./partials/footer`) %>
 
     <script>
-        const deleteButton = document.querySelector('a.delete');
-        deleteButton.addEventListener('click', (e) => {
-            const endpoint = `/blogs/${deleteButton.dataset.doc}`;
+        const deleteBtn = document.querySelector('a.delete');
+        deleteBtn.addEventListener('click', (e) => {
+            const endpoint = `/blogs/${deleteBtn.dataset.doc}`;
             
             fetch(endpoint,
-            {method:'DELETE'}
-            )
-            .then((res)=>{
-               res.json()
+            {
+                method:'DELETE'
             })
+            .then((response)=> response.json())
             .then((data)=>{
-                window.location.href = data.redirect;
+                window.location.href = data.redirect
+                <!-- window.location.href = data.redirect;  -->
             })
             .catch(err=>console.log(err))
         });

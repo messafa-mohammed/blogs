@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const port = 3000
 const Blog = require(`./models/blog`);
 const dbUri = `mongodb+srv://hanoun00:hanoun1234@hisoka.yxifnzk.mongodb.net/dbtest?retryWrites=true&w=majority&appName=Hisoka`
-
+             
 mongoose.connect(dbUri)
 .then(()=> { 
      app.listen(port, () => console.log(`Example app listening on port ${port}!`))
@@ -24,7 +24,7 @@ app.get(`/` , (req , res)=>{//yep
 });
 
 app.get(`/about`,(req,res)=>{
-    res.redirect(`/about`,{title:`About`});
+    res.render(`about`,{title:`About`});
 })
 
 app.get('/blogs', (req,res)=>{
@@ -35,7 +35,6 @@ app.get('/blogs', (req,res)=>{
 
 app.post('/blogs',(req,res)=>{
     const blog = new Blog(req.body);
-    console.log(req.body);
     blog.save()
     .then((result)=>{
         res.redirect('/blogs');
@@ -49,10 +48,9 @@ app.delete( '/blogs/:id' , ( req , res )=>{
     const id=req.params.id;
     Blog.findByIdAndDelete({_id : id})
     .then(()=>{
-        res.json({
-            redirect: '/blogs'
-        })
-    }).catch((err)=> {
+        res.json({redirect: '/blogs'})
+    })
+    .catch((err)=> {
         console.log(err)
     });
 });
